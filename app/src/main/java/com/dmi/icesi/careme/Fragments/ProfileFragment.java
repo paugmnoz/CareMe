@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.dmi.icesi.careme.LoginActivity;
 import com.dmi.icesi.careme.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -66,6 +67,8 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView tv_profile_projname;
 
     private TextView username, email, password;
     private EditText et_email, et_pass;
@@ -132,6 +135,9 @@ public class ProfileFragment extends Fragment {
         username = (TextView) view.findViewById(R.id.tv_name);
         email = (TextView) view.findViewById(R.id.tv_email);
         password = (TextView) view.findViewById(R.id.tv_password);
+
+        tv_profile_projname = (TextView) view.findViewById(R.id.tv_profile_projname);
+        tv_profile_projname.setText(LoginActivity.projectTitle);
 
         et_email = (EditText) view.findViewById(R.id.et_email);
         et_pass = (EditText) view.findViewById(R.id.et_pass);

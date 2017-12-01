@@ -3,6 +3,7 @@ package com.dmi.icesi.careme.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dmi.icesi.careme.Adapters.MoistureChangeAdapter;
+import com.dmi.icesi.careme.LoginActivity;
 import com.dmi.icesi.careme.Model.MoistureChange;
 import com.dmi.icesi.careme.R;
 import com.github.mikephil.charting.charts.LineChart;
@@ -20,6 +22,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +49,10 @@ public class HomeFragment extends Fragment  {
     ArrayList<Entry> yValues;
     private OnFragmentInteractionListener mListener;
     private int currentMoisture;
+
+    //Auth
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     //Moisture changes historial of cardviews
     private MoistureChangeAdapter mc_adapter;
@@ -81,7 +89,7 @@ public class HomeFragment extends Fragment  {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
 
-        ref.child("Cactus").child("data").addValueEventListener(new ValueEventListener() {
+        ref.child(LoginActivity.projectTitle).child("data").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshotDos) {
                         moistureChanges.clear();
@@ -112,6 +120,16 @@ public class HomeFragment extends Fragment  {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //inicializa variables Firebase
+        mAuth = FirebaseAuth.getInstance();
+
+
+
+
+        //evaluar sesión
+        evaluarUsuario();
+
+
         humactual = (TextView) view.findViewById(R.id.hum);
         //-------------------------------- LINE CHART GRAPH ------------------------------//
 
@@ -138,7 +156,6 @@ public class HomeFragment extends Fragment  {
         yValues.add(new Entry(2,70f));
 
 
-        bringMoistureChanges();
 
         LineDataSet set1 = new LineDataSet(yValues,"Data set 1");
 
@@ -163,6 +180,23 @@ public class HomeFragment extends Fragment  {
         recyclerView.setAdapter(mc_adapter);
 
         return view;
+    }
+
+    private void evaluarUsuario() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    //Project name
+                    bringMoistureChanges();
+
+                } else {
+
+                }
+                // ...
+            }
+        };
     }
 
     private void listaprueba() {

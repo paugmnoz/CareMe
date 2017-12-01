@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText projectName;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference();
+    public static String projectTitle;
 
     //Auth
     private FirebaseAuth mAuth;
@@ -54,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
 
         projectName = (EditText) findViewById(projectname);
+
+        projectTitle = projectName.getText().toString();
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -89,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
-                        ref.child(projectName.getText().toString());
+
                         // ...
                     }
                 });

@@ -10,26 +10,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.dmi.icesi.careme.Fragments.ChatFragment;
 import com.dmi.icesi.careme.Fragments.HomeFragment;
 import com.dmi.icesi.careme.Fragments.ProfileFragment;
-import com.dmi.icesi.careme.Model.MensajeEnviar;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ServerValue;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener,
         ChatFragment.OnFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener {
@@ -108,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     //Project name
-                    projectname = "Cactus";
-                    getSupportActionBar().setTitle(projectname);
+                    getSupportActionBar().setTitle(LoginActivity.projectTitle);
 
                 } else {
                     // User is signed out
