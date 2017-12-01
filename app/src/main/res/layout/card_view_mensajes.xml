@@ -1,57 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cardview:LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    cardview:cardCornerRadius="10sp">
-    <LinearLayout
+    cardview:cardCornerRadius="10sp"
+    android:layout_margin="10sp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/fotoPerfilMensaje"
+        android:layout_width="24sp"
+        android:layout_height="24sp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="4dp"
+        />
+
+    <android.support.v7.widget.CardView
+        android:padding="10dp"
+        android:backgroundTint="#59EFA3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="20dp">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10sp">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/fotoPerfilMensaje"
-                android:layout_width="24sp"
-                android:layout_height="24sp"
-                android:src="@mipmap/ic_launcher"
-                />
-        </LinearLayout>
+        android:layout_toRightOf="@+id/fotoPerfilMensaje"
+        cardview:cardCornerRadius="10sp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="5dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textColor="#FFFFFF"
                     android:id="@+id/nombreMensaje"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jose Ossa"
                     android:layout_weight="1"/>
                 <TextView
+                    android:textColor="#FFFFFF"
                     android:id="@+id/horaMensaje"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00:00"/>
+                    android:text="00:00"
+                    android:layout_marginRight="10dp"/>
             </LinearLayout>
             <TextView
+                android:textColor="#FFFFFF"
                 android:visibility="gone"
                 android:id="@+id/mensajeMensaje"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hola Mundo"/>
+                android:text="Hola Mundo" />
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/mensajeFoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 />
         </LinearLayout>
 
-    </LinearLayout>
-</cardview:LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

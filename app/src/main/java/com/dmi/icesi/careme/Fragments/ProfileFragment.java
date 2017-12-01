@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -135,6 +136,8 @@ public class ProfileFragment extends Fragment {
         et_email = (EditText) view.findViewById(R.id.et_email);
         et_pass = (EditText) view.findViewById(R.id.et_pass);
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+
         btnEmail = (Button) view.findViewById(R.id.btn_email);
         btnPass = (Button) view.findViewById(R.id.btn_pass);
 
@@ -160,9 +163,18 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 vsPass.showNext();
+            }
+        });
+
+
+        btnEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vs.showNext();
                 updateEmail(et_email.getText().toString());
             }
         });
+
 
         btnPass.setOnClickListener(new View.OnClickListener() {
             @Override
