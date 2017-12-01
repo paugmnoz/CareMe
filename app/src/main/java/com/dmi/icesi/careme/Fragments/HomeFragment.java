@@ -3,17 +3,13 @@ package com.dmi.icesi.careme.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dmi.icesi.careme.Adapters.MoistureChangeAdapter;
@@ -24,8 +20,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +44,7 @@ public class HomeFragment extends Fragment  {
     private LineChart graph;
     ArrayList<Entry> yValues;
     private OnFragmentInteractionListener mListener;
+    private int currentMoisture;
 
     //Moisture changes historial of cardviews
     private MoistureChangeAdapter mc_adapter;
@@ -93,9 +88,11 @@ public class HomeFragment extends Fragment  {
 
                 for (DataSnapshot data : dataSnapshotDos.getChildren()) {
                     MoistureChange modelo = data.getValue(MoistureChange.class);
+                    currentMoisture = modelo.getMoisturePercentage();
+                    String tempMoisture = Integer.toString(currentMoisture);
                     moistureChanges.add(modelo);
                     recyclerView.setAdapter(mc_adapter);
-                    humactual.setText("26%");
+                    humactual.setText(tempMoisture + "%");
                     yValues.add(new Entry(moistureChanges.get(moistureChanges.size()-1).getHour()
                             ,moistureChanges.get(moistureChanges.size()-1).getMoisturePercentage()));
 

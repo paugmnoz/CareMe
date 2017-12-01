@@ -1,30 +1,14 @@
 package com.dmi.icesi.careme;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,18 +21,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.Manifest.permission.READ_CONTACTS;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class RegisterActivity extends AppCompatActivity  {
-
-
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -56,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity  {
     private EditText name, lastname, projectnameNew;
     private View mProgressView;
     private View mLoginFormView;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference ref = database.getReference();
 
     //Auth
     private FirebaseAuth mAuth;
@@ -115,6 +96,8 @@ public class RegisterActivity extends AppCompatActivity  {
                                     .setDisplayName(name.getText().toString() + " " + lastname.getText().toString()).build();
                             usuarioActual.updateProfile(profileUpdates);
 
+                            ref.child(projectnameNew.getText().toString());
+
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(i);
                         }
@@ -126,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity  {
                         // ...
                     }
                 });
+
         }
 
     private boolean validateForm() {

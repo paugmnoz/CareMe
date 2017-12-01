@@ -133,7 +133,7 @@ public class ProfileFragment extends Fragment {
         password = (TextView) view.findViewById(R.id.tv_password);
 
         et_email = (EditText) view.findViewById(R.id.et_email);
-        et_email = (EditText) view.findViewById(R.id.et_pass);
+        et_pass = (EditText) view.findViewById(R.id.et_pass);
 
         btnEmail = (Button) view.findViewById(R.id.btn_email);
         btnPass = (Button) view.findViewById(R.id.btn_pass);
@@ -148,10 +148,18 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btnEmail.setOnClickListener(new View.OnClickListener() {
+
+        email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vs.showNext();
+            }
+        });
+
+        password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vsPass.showNext();
                 updateEmail(et_email.getText().toString());
             }
         });
@@ -196,7 +204,7 @@ public class ProfileFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot fotos : dataSnapshot.getChildren()) {
-                    if(fotos.getKey().contains("Ossa")) {
+                    if(fotos.getKey().contains("Photo")) {
                         //Si es un usuario especifico se puede hacer con el correo o
                         //con el Uid con mAuth.getCurrentUser().getUid()
                         Uri downloaded = Uri.parse(fotos.getValue().toString());

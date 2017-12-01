@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static com.dmi.icesi.careme.R.id.projectname;
 
 /**
  * A login screen that offers login via email/password.
@@ -29,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private EditText projectName;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference ref = database.getReference();
 
     //Auth
     private FirebaseAuth mAuth;
@@ -45,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
         mPasswordView = (EditText) findViewById(R.id.password);
+
+        projectName = (EditText) findViewById(projectname);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -80,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
+                        ref.child(projectName.getText().toString());
                         // ...
                     }
                 });
