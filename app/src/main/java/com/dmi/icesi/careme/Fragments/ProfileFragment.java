@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -89,6 +90,7 @@ public class ProfileFragment extends Fragment {
     private CircleImageView holder;
     private Bitmap pic;
     private Uri uri;
+    private CircleImageView profilephoto;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ref = database.getReference();
@@ -125,6 +127,10 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user.getPhotoUrl() != null) {
+        }
     }
 
     @Override
@@ -135,6 +141,8 @@ public class ProfileFragment extends Fragment {
         username = (TextView) view.findViewById(R.id.tv_name);
         email = (TextView) view.findViewById(R.id.tv_email);
         password = (TextView) view.findViewById(R.id.tv_password);
+
+        profilephoto = (CircleImageView) view.findViewById(R.id.perfil);
 
         tv_profile_projname = (TextView) view.findViewById(R.id.tv_profile_projname);
         tv_profile_projname.setText(LoginActivity.projectTitle);
@@ -347,7 +355,22 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Uri getDownloadUrl = taskSnapshot.getDownloadUrl();
-                            ref.child("Ossa").setValue(getDownloadUrl.toString());
+
+                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setPhotoUri(getDownloadUrl)
+                                    .build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                profilephoto.setImageURI(user.getPhotoUrl());
+                                            }
+                                        }
+                                    });
                             //Toast.makeText(getContext(), "Se subio foto de perfil a: " + getDownloadUrl.toString(), Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {

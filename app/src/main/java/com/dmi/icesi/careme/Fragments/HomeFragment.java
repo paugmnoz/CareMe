@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dmi.icesi.careme.Adapters.MoistureChangeAdapter;
-import com.dmi.icesi.careme.LoginActivity;
 import com.dmi.icesi.careme.Model.MoistureChange;
 import com.dmi.icesi.careme.R;
 import com.github.mikephil.charting.charts.LineChart;
@@ -89,7 +88,7 @@ public class HomeFragment extends Fragment  {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference();
 
-        ref.child(LoginActivity.projectTitle).child("data").addValueEventListener(new ValueEventListener() {
+        ref.child("Cactus").child("data").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshotDos) {
                         moistureChanges.clear();
@@ -131,6 +130,8 @@ public class HomeFragment extends Fragment  {
 
 
         humactual = (TextView) view.findViewById(R.id.hum);
+        bringMoistureChanges();
+
         //-------------------------------- LINE CHART GRAPH ------------------------------//
 
         // Inflate the layout for this fragment
@@ -189,7 +190,6 @@ public class HomeFragment extends Fragment  {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     //Project name
-                    bringMoistureChanges();
 
                 } else {
 

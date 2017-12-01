@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,7 +52,19 @@ public class MoistureChangeAdapter extends RecyclerView.Adapter<MoistureChangeAd
         holder.tv_moisture.setText("Humedad " + moistureChanges.get(position).getMoisturePercentage() +"%");
         holder.time.setText("Hoy, " + moistureChanges.get(position).getHour() + ":" +
                 moistureChanges.get(position).getMinute());
-    }
+        for (int i = 0; i < moistureChanges.size(); i++) {
+
+            if (moistureChanges.get(position).getMoisturePercentage() >
+                    (moistureChanges.get(moistureChanges.size()-1).getMoisturePercentage())){
+                holder.changeImg.setImageResource(R.drawable.upchange);
+            } else  if (moistureChanges.get(position).getMoisturePercentage() ==
+                    (moistureChanges.get(moistureChanges.size()-1).getMoisturePercentage())){
+                holder.changeImg.setImageResource(R.drawable.none);
+            } else {
+                holder.changeImg.setImageResource(R.drawable.lowchange);
+            }
+
+        }}
 
     public Object getItem(int position) {return moistureChanges.get(position);}
 
@@ -67,6 +80,7 @@ public class MoistureChangeAdapter extends RecyclerView.Adapter<MoistureChangeAd
         TextView tv_moisture;
         TextView time;
         LinearLayout ll_color;
+        ImageView changeImg;
 
         public MoistureViewHolder(View itemView) {
             super(itemView);
@@ -74,7 +88,7 @@ public class MoistureChangeAdapter extends RecyclerView.Adapter<MoistureChangeAd
             tv_moisture = (TextView) itemView.findViewById(R.id.tv_moisture);
             time = (TextView) itemView.findViewById(R.id.tv_time_moisture);
             ll_color = (LinearLayout) itemView.findViewById(R.id.ll_colorMoisture);
-
+            changeImg = (ImageView) itemView.findViewById(R.id.imageView3);
         }
     }
 }
