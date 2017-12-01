@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/whiteapp</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:colorForeground">?android:attr/colorBackground</item>
+        <item name="android:statusBarColor">@color/common_google_signin_btn_text_dark_focused</item>
+        <item name="android:toolbarStyle">@color/whiteapp</item>
+        <item name="android:navigationBarColor">@color/whiteapp</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/whiteapp</item>
+    </style>
+
+</resources>

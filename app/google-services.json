@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "101262055566",
+    "firebase_url": "https://caremeapp-776bc.firebaseio.com",
+    "project_id": "caremeapp-776bc",
+    "storage_bucket": "caremeapp-776bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101262055566:android:ff2fe7d195a21006",
+        "android_client_info": {
+          "package_name": "com.dmi.icesi.careme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101262055566-tff49mjiggq7rl7v4ou0kbmtium24ajc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dmi.icesi.careme",
+            "certificate_hash": "d0899920a888fce6c06c7ff84083fc8a6993daeb"
+          }
+        },
+        {
+          "client_id": "101262055566-gu2vkm6s1062i16p3iraelo8lm2c4fdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA81yd_eGNltUrwv0WGY4yq4eqJ1BWzuS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101262055566-gu2vkm6s1062i16p3iraelo8lm2c4fdu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
