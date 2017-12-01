@@ -24,13 +24,23 @@
             android:layout_marginTop="20dp"
             android:textColor="@color/whiteapp"
             android:textStyle="bold"/>
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/perfil"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:src="@drawable/common_google_signin_btn_icon_dark"/>
+
+      <!--  <ImageView
             android:id="@+id/imageView2"
             android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />-->
+
 
         <TextView
             android:id="@+id/tv_name"
@@ -43,6 +53,9 @@
             android:textSize="18dp"
             android:textStyle="bold"/>
 
+
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_marginTop="50dp"
@@ -51,7 +64,14 @@
             android:layout_marginBottom="15dp"
 
             android:textStyle="bold"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+      />
+
+        <ViewSwitcher
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/my_switcher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/tv_email"
@@ -60,8 +80,36 @@
             android:text="valenriascos@caremeapp.com"
             android:layout_marginBottom="25dp"
             android:textStyle="normal"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:clickable="true"
+            android:onClick="TextViewClicked"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginBottom="25dp"
+                android:textStyle="normal"
+                android:textSize="18dp"/>
+                <!--android:clickable="true"
+                android:onClick="TextViewClicked"-->
+                <Button
+                    android:id="@+id/btn_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enviar" />
+            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+    </ViewSwitcher>
 
         <TextView
             android:layout_width="match_parent"
@@ -71,15 +119,54 @@
             android:textStyle="bold"
             android:textSize="16dp"/>
 
+        <ViewSwitcher
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/switcherPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/tv_password"
             android:layout_width="match_parent"
             android:layout_marginBottom="25dp"
             android:background="#ffffff"
             android:layout_height="wrap_content"
             android:text="contraseña"
             android:textStyle="normal"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/et_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginBottom="25dp"
+                    android:textStyle="normal"
+                    android:textSize="18dp"/>
+                <!--android:clickable="true"
+                android:onClick="TextViewClicked"-->
+                <Button
+                    android:id="@+id/btn_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enviar" />
+            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+        </ViewSwitcher>
 
         <Button
             android:id="@+id/btn_logout"
