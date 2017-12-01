@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     cardview:cardCornerRadius="10sp"
-    android:layout_margin="10sp">
+    android:layout_margin="5dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fotoPerfilMensaje"
@@ -23,12 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/fotoPerfilMensaje"
         cardview:cardCornerRadius="10sp"
+        android:layout_marginBottom="5dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -38,6 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jose Ossa"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
                     android:layout_weight="1"/>
                 <TextView
                     android:textColor="#FFFFFF"
@@ -45,6 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="00:00"
+                    android:textSize="10dp"
                     android:layout_marginRight="10dp"/>
             </LinearLayout>
             <TextView
@@ -53,7 +58,9 @@
                 android:id="@+id/mensajeMensaje"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hola Mundo" />
+                android:text="Hola Mundo"
+                android:textSize="16dp"
+                android:textStyle="normal"/>
             <ImageView
                 android:id="@+id/mensajeFoto"
                 android:layout_width="wrap_content"
